@@ -44,13 +44,13 @@
 /* #undef HAVE_LIBRPCRT4 */
 
 /* Define to 1 if you have the `rt' library (-lrt). */
-/* #undef HAVE_LIBRT */
+#define HAVE_LIBRT 1
 
 /* Define to 1 if you have the `socket' library (-lsocket). */
 /* #undef HAVE_LIBSOCKET */
 
 /* Define to 1 if you have the `uuid' library (-luuid). */
-/* #undef HAVE_LIBUUID */
+#define HAVE_LIBUUID 1
 
 /* Define to 1 if you have the `ws2_32' library (-lws2_32). */
 /* #undef HAVE_LIBWS2_32 */
@@ -137,9 +137,6 @@
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "zeromq"
 
-/* Define to the home page for this package. */
-#define PACKAGE_URL ""
-
 /* Define to the version of this package. */
 #define PACKAGE_VERSION "2.1.7"
 
@@ -174,7 +171,7 @@
 #define ZMQ_HAVE_IFADDRS 1
 
 /* Have Linux OS */
-/* #undef ZMQ_HAVE_LINUX */
+#define ZMQ_HAVE_LINUX 1
 
 /* Have MinGW32 */
 /* #undef ZMQ_HAVE_MINGW32 */
@@ -189,7 +186,7 @@
 /* #undef ZMQ_HAVE_OPENPGM */
 
 /* Have DarwinOSX OS */
-#define ZMQ_HAVE_OSX 1
+/* #undef ZMQ_HAVE_OSX */
 
 /* Have QNX Neutrino OS */
 /* #undef ZMQ_HAVE_QNXNTO */

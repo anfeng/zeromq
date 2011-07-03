@@ -34,8 +34,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = x86_64-apple-darwin11.4.2
-host_triplet = x86_64-apple-darwin11.4.2
+build_triplet = x86_64-unknown-linux-gnu
+host_triplet = x86_64-unknown-linux-gnu
 subdir = src
 DIST_COMMON = $(include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/libzmq.pc.in \
@@ -93,14 +93,15 @@ am_libzmq_la_OBJECTS = libzmq_la-clock.lo libzmq_la-command.lo \
 	libzmq_la-poller_base.lo libzmq_la-pull.lo libzmq_la-push.lo \
 	libzmq_la-reaper.lo libzmq_la-pub.lo libzmq_la-rep.lo \
 	libzmq_la-req.lo libzmq_la-select.lo libzmq_la-session.lo \
-	libzmq_la-socket_base.lo libzmq_la-sub.lo libzmq_la-swap.lo \
-	libzmq_la-tcp_connecter.lo libzmq_la-tcp_listener.lo \
-	libzmq_la-tcp_socket.lo libzmq_la-thread.lo \
-	libzmq_la-transient_session.lo libzmq_la-trie.lo \
-	libzmq_la-uuid.lo libzmq_la-xpub.lo libzmq_la-xrep.lo \
-	libzmq_la-xreq.lo libzmq_la-xsub.lo libzmq_la-zmq.lo \
-	libzmq_la-zmq_connecter.lo libzmq_la-zmq_engine.lo \
-	libzmq_la-zmq_init.lo libzmq_la-zmq_listener.lo
+	libzmq_la-signaler.lo libzmq_la-socket_base.lo \
+	libzmq_la-sub.lo libzmq_la-swap.lo libzmq_la-tcp_connecter.lo \
+	libzmq_la-tcp_listener.lo libzmq_la-tcp_socket.lo \
+	libzmq_la-thread.lo libzmq_la-transient_session.lo \
+	libzmq_la-trie.lo libzmq_la-uuid.lo libzmq_la-xpub.lo \
+	libzmq_la-xrep.lo libzmq_la-xreq.lo libzmq_la-xsub.lo \
+	libzmq_la-zmq.lo libzmq_la-zmq_connecter.lo \
+	libzmq_la-zmq_engine.lo libzmq_la-zmq_init.lo \
+	libzmq_la-zmq_listener.lo
 libzmq_la_OBJECTS = $(am_libzmq_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -157,21 +158,21 @@ HEADERS = $(include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /Users/afeng/devtools/zeromq-2.1.7/config/missing --run aclocal-1.11
-AMTAR = ${SHELL} /Users/afeng/devtools/zeromq-2.1.7/config/missing --run tar
+ACLOCAL = ${SHELL} /home/evans/src/zeromq/config/missing --run aclocal-1.11
+AMTAR = ${SHELL} /home/evans/src/zeromq/config/missing --run tar
 AM_DEFAULT_VERBOSITY = 0
 AR = ar
 AS = as
 ASCIIDOC = 
-AUTOCONF = ${SHELL} /Users/afeng/devtools/zeromq-2.1.7/config/missing --run autoconf
-AUTOHEADER = ${SHELL} /Users/afeng/devtools/zeromq-2.1.7/config/missing --run autoheader
-AUTOMAKE = ${SHELL} /Users/afeng/devtools/zeromq-2.1.7/config/missing --run automake-1.11
-AWK = awk
+AUTOCONF = ${SHELL} /home/evans/src/zeromq/config/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/evans/src/zeromq/config/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/evans/src/zeromq/config/missing --run automake-1.11
+AWK = gawk
 CC = gcc -std=gnu99
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
 CPP = gcc -std=gnu99 -E
-CPPFLAGS = -Wall -Wno-uninitialized -D_DARWIN_C_SOURCE -D_REENTRANT -D_THREAD_SAFE 
+CPPFLAGS = -pedantic -Werror -Wall -D_GNU_SOURCE -D_REENTRANT -D_THREAD_SAFE 
 CXX = g++
 CXXCPP = g++ -E
 CXXDEPMODE = depmode=gcc3
@@ -180,40 +181,40 @@ CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
 DLLTOOL = dlltool
-DSYMUTIL = dsymutil
+DSYMUTIL = 
 DUMPBIN = 
-ECHO_C = \c
-ECHO_N = 
+ECHO_C = 
+ECHO_N = -n
 ECHO_T = 
-EGREP = /usr/bin/grep -E
+EGREP = /bin/grep -E
 EXEEXT = 
-FGREP = /usr/bin/grep -F
-GREP = /usr/bin/grep
+FGREP = /bin/grep -F
+GREP = /bin/grep
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /usr/llvm-gcc-4.2/libexec/gcc/i686-apple-darwin11/4.2.1/ld
+LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBOBJS = 
-LIBS = -lpthread 
+LIBS = -luuid -lrt -lpthread 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIBZMQ_EXTRA_CFLAGS = 
-LIBZMQ_EXTRA_CXXFLAGS = -fvisibility=hidden 
+LIBZMQ_EXTRA_CXXFLAGS = 
 LIBZMQ_EXTRA_LDFLAGS = 
-LIPO = lipo
+LIPO = 
 LN_S = ln -s
 LTLIBOBJS = 
 LTVER = 1:0:0
-MAKEINFO = ${SHELL} /Users/afeng/devtools/zeromq-2.1.7/config/missing --run makeinfo
-MKDIR_P = ../config/install-sh -c -d
-NM = /usr/bin/nm
-NMEDIT = nmedit
+MAKEINFO = ${SHELL} /home/evans/src/zeromq/config/missing --run makeinfo
+MKDIR_P = /bin/mkdir -p
+NM = /usr/bin/nm -B
+NMEDIT = 
 OBJDUMP = objdump
 OBJEXT = o
-OTOOL = otool
-OTOOL64 = :
+OTOOL = 
+OTOOL64 = 
 OpenPGM_CFLAGS = 
 OpenPGM_LIBS = 
 PACKAGE = zeromq
@@ -221,23 +222,20 @@ PACKAGE_BUGREPORT = zeromq-dev@lists.zeromq.org
 PACKAGE_NAME = zeromq
 PACKAGE_STRING = zeromq 2.1.7
 PACKAGE_TARNAME = zeromq
-PACKAGE_URL = 
 PACKAGE_VERSION = 2.1.7
 PATH_SEPARATOR = :
 PKG_CONFIG = 
-PKG_CONFIG_LIBDIR = 
-PKG_CONFIG_PATH = 
 RANLIB = ranlib
-SED = /usr/local/bin/gsed
+SED = /bin/sed
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = strip
 VERSION = 2.1.7
 XMLTO = 
-abs_builddir = /Users/afeng/devtools/zeromq-2.1.7/src
-abs_srcdir = /Users/afeng/devtools/zeromq-2.1.7/src
-abs_top_builddir = /Users/afeng/devtools/zeromq-2.1.7
-abs_top_srcdir = /Users/afeng/devtools/zeromq-2.1.7
+abs_builddir = /home/evans/src/zeromq/src
+abs_srcdir = /home/evans/src/zeromq/src
+abs_top_builddir = /home/evans/src/zeromq
+abs_top_srcdir = /home/evans/src/zeromq
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 ac_ct_DUMPBIN = 
@@ -247,35 +245,35 @@ am__quote =
 am__tar = tar --format=ustar -chf - "$$tardir"
 am__untar = tar -xf -
 bindir = ${exec_prefix}/bin
-build = x86_64-apple-darwin11.4.2
+build = x86_64-unknown-linux-gnu
 build_alias = 
 build_cpu = x86_64
-build_os = darwin11.4.2
-build_vendor = apple
+build_os = linux-gnu
+build_vendor = unknown
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-apple-darwin11.4.2
+host = x86_64-unknown-linux-gnu
 host_alias = 
 host_cpu = x86_64
-host_os = darwin11.4.2
-host_vendor = apple
+host_os = linux-gnu
+host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /Users/afeng/devtools/zeromq-2.1.7/config/install-sh
+install_sh = ${SHELL} /home/evans/src/zeromq/config/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 libzmq_have_asciidoc = no
 libzmq_have_xmlto = no
 localedir = ${datarootdir}/locale
 localstatedir = ${prefix}/var
-lt_ECHO = /bin/echo
+lt_ECHO = echo
 mandir = ${datarootdir}/man
-mkdir_p = $(top_builddir)/config/install-sh -c -d
+mkdir_p = /bin/mkdir -p
 oldincludedir = /usr/include
 pdfdir = ${docdir}
 pgm_basename = libpgm-5.1.115~dfsg
@@ -350,6 +348,7 @@ libzmq_la_SOURCES = \
     select.hpp \
     semaphore.hpp \
     session.hpp \
+    signaler.hpp \
     socket_base.hpp \
     stdint.hpp \
     sub.hpp \
@@ -410,6 +409,7 @@ libzmq_la_SOURCES = \
     req.cpp \
     select.cpp \
     session.cpp \
+    signaler.cpp \
     socket_base.cpp \
     sub.cpp \
     swap.cpp \
@@ -432,7 +432,7 @@ libzmq_la_SOURCES = \
 
 libzmq_la_LDFLAGS = -version-info 1:0:0 
 #libzmq_la_LDFLAGS = -no-undefined -avoid-version -version-info 1:0:0 
-libzmq_la_CXXFLAGS = -fvisibility=hidden 
+libzmq_la_CXXFLAGS = 
 #libzmq_la_CPPFLAGS = -I$(top_srcdir)//include/
 #libzmq_la_LIBADD = $(top_srcdir)//libpgm_noinst.la
 all: platform.hpp
@@ -566,6 +566,7 @@ include ./$(DEPDIR)/libzmq_la-rep.Plo
 include ./$(DEPDIR)/libzmq_la-req.Plo
 include ./$(DEPDIR)/libzmq_la-select.Plo
 include ./$(DEPDIR)/libzmq_la-session.Plo
+include ./$(DEPDIR)/libzmq_la-signaler.Plo
 include ./$(DEPDIR)/libzmq_la-socket_base.Plo
 include ./$(DEPDIR)/libzmq_la-sub.Plo
 include ./$(DEPDIR)/libzmq_la-swap.Plo
@@ -905,6 +906,14 @@ libzmq_la-session.lo: session.cpp
 #	source='session.cpp' object='libzmq_la-session.lo' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libzmq_la_CPPFLAGS) $(CPPFLAGS) $(libzmq_la_CXXFLAGS) $(CXXFLAGS) -c -o libzmq_la-session.lo `test -f 'session.cpp' || echo '$(srcdir)/'`session.cpp
+
+libzmq_la-signaler.lo: signaler.cpp
+	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libzmq_la_CPPFLAGS) $(CPPFLAGS) $(libzmq_la_CXXFLAGS) $(CXXFLAGS) -MT libzmq_la-signaler.lo -MD -MP -MF $(DEPDIR)/libzmq_la-signaler.Tpo -c -o libzmq_la-signaler.lo `test -f 'signaler.cpp' || echo '$(srcdir)/'`signaler.cpp
+	$(AM_V_at)$(am__mv) $(DEPDIR)/libzmq_la-signaler.Tpo $(DEPDIR)/libzmq_la-signaler.Plo
+#	$(AM_V_CXX) \
+#	source='signaler.cpp' object='libzmq_la-signaler.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libzmq_la_CPPFLAGS) $(CPPFLAGS) $(libzmq_la_CXXFLAGS) $(CXXFLAGS) -c -o libzmq_la-signaler.lo `test -f 'signaler.cpp' || echo '$(srcdir)/'`signaler.cpp
 
 libzmq_la-socket_base.lo: socket_base.cpp
 	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libzmq_la_CPPFLAGS) $(CPPFLAGS) $(libzmq_la_CXXFLAGS) $(CXXFLAGS) -MT libzmq_la-socket_base.lo -MD -MP -MF $(DEPDIR)/libzmq_la-socket_base.Tpo -c -o libzmq_la-socket_base.lo `test -f 'socket_base.cpp' || echo '$(srcdir)/'`socket_base.cpp
