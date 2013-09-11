@@ -37,10 +37,10 @@ subdir = .
 DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in \
 	$(top_srcdir)/builds/redhat/zeromq.spec.in \
-	$(top_srcdir)/configure AUTHORS COPYING COPYING.LESSER INSTALL \
-	NEWS config/compile config/config.guess config/config.sub \
-	config/depcomp config/install-sh config/ltmain.sh \
-	config/missing
+	$(top_srcdir)/configure AUTHORS COPYING COPYING.LESSER \
+	ChangeLog INSTALL NEWS config/compile config/config.guess \
+	config/config.sub config/depcomp config/install-sh \
+	config/ltmain.sh config/missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/config/libtool.m4 \
 	$(top_srcdir)/config/ltoptions.m4 \
@@ -178,12 +178,9 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
-PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
-PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
-PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 RANLIB = @RANLIB@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
@@ -576,7 +573,7 @@ distcheck: dist
 	*.zip*) \
 	  unzip $(distdir).zip ;;\
 	esac
-	chmod -R a-w $(distdir); chmod a+w $(distdir)
+	chmod -R a-w $(distdir); chmod u+w $(distdir)
 	mkdir $(distdir)/_build
 	mkdir $(distdir)/_inst
 	chmod a-w $(distdir)
